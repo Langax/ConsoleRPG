@@ -4,7 +4,6 @@
 class Warrior : public Character
 {
 public:
-
     //================================================================================================
     //=============================== PROPERTIES & VARIABLES =========================================
     //================================================================================================
@@ -15,7 +14,10 @@ public:
     //================================================================================================
     Warrior();
     void Attack(Character& target) override;
-    void TakeDamage(int damage) override;
     void Heal() override;
+    void TakeDamage(int damage) override;
     void Die() override;
+    int CalculateDamage() override;
+    void Status() override;
+    void RecoverMana() override;
 };

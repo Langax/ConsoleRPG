@@ -154,7 +154,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Console_RPG.cpp" />
+    <ClCompile Include="Character\Goblin.cpp" />
+    <ClCompile Include="Character\Mage.cpp" />
+    <ClCompile Include="Character\Warrior.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="System\BattleSystem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Character\Character.h" />
+    <ClInclude Include="Character\Goblin.h" />
+    <ClInclude Include="Character\Mage.h" />
+    <ClInclude Include="Character\Warrior.h" />
+    <ClInclude Include="System\BattleSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

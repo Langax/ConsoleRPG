@@ -3,6 +3,7 @@
 #include "Character/Mage.h"
 #include "Character/Goblin.h"
 #include "Character/Warrior.h"
+#include "System/BattleSystem.h"
 
 int main()
 {
@@ -27,21 +28,25 @@ int main()
         Player = new Warrior();
         break;
     }
-
     
-    Character* Enemies[3];
-    Enemies[0] = new Goblin();
-    Enemies[1] = new Goblin();
-    Enemies[2] = new Goblin();
+    Character* FirstGoblin = new Goblin();
+    BattleSystem* FirstBattle = new BattleSystem();
     
-    Player->Attack(*Enemies[0]);
-    Player->Heal();
-
-    if (Enemies[0]->bIsDead == true)
+    FirstBattle->StartBattle(*Player, *FirstGoblin);
+    if (FirstBattle->bPlayerDied)
     {
-        delete Enemies[0];
+        delete Player;
+        delete FirstBattle;
     }
-    
+
+    if (!FirstBattle->bInCombat)
+    {
+        delete FirstGoblin;
+        delete FirstBattle;
+    }
+
+
     delete Player;
+    delete FirstBattle;
     return 0;
 }
