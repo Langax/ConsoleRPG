@@ -24,10 +24,15 @@ int main()
         Player = new Mage();
         break;
     default:
-        std::cout << "If you will not decide, I will decide for you. You shall be a Warrior!";
+        std::cout << "If you will not decide, I will decide for you. You shall be a Warrior!\n";
         Player = new Warrior();
         break;
     }
+
+    std::string Name;
+    std::cout << "What name shall you go by, chosen one?\n";
+    std::cin >> Name;
+    Player->Name = Name;
     
     Character* FirstGoblin = new Goblin();
     BattleSystem* FirstBattle = new BattleSystem();

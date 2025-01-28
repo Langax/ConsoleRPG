@@ -16,13 +16,13 @@ void Warrior::Attack(Character& Target)
     if (bIsDead) return;
 
     int Damage = CalculateDamage();
-    std::cout << "\nThe Warrior cleaves his sword through the air dealing " << Damage << " damage to the " << Target.Name << "\n";
+    std::cout << "\n" << Name << " Cleaves their sword through the air dealing " << Damage << " damage to the " << Target.Name << "\n";
     Target.TakeDamage(Damage);
 }
 
 void Warrior::Heal()
 {
-    std::cout << "The Warrior calms his rage and heals 5 health points\n";
+    std::cout << Name << " Calms their rage and heals 15 health points\n";
     Health += 15;
     if (Health > 150)
     {
@@ -47,13 +47,13 @@ void Warrior::TakeDamage(int Damage)
     }
     else
     {
-        std::cout << "The Warrior holds steadfastly, and takes no damage!\n";
+        std::cout << Name << " Holds steadfastly, and takes no damage!\n";
     }
 }
 
 void Warrior::Die()
 {
-    std::cout << "The Warrior has fainted!\n";
+    std::cout << Name << " Has fainted!\n";
     bIsDead = true;
 }
 

@@ -21,7 +21,7 @@ void Mage::Attack(Character& Target)
     }
 
     int Damage = CalculateDamage();
-    std::cout << "The Mage hurls a mighty fireball through the air dealing " << Damage << " damage to the " << Target.Name << "\n";
+    std::cout << "\n" << Name << " Hurls a mighty fireball through the air dealing " << Damage << " damage to the " << Target.Name << "\n";
     Mana -= 15;
     Target.TakeDamage(Damage);
 }
@@ -35,7 +35,7 @@ void Mage::Heal()
         return;
     }
     
-    std::cout << "The Mage channels a water spell and heals 10 health!\n";
+    std::cout << Name << " Channels a water spell and heals 20 health!\n";
     Health += 20;
     if (Health > 75)
     {
@@ -60,14 +60,14 @@ void Mage::TakeDamage(int Damage)
     }
     else
     {
-        std::cout << "The Mage looks unfazed, and takes no damage!\n";
+        std::cout << Name << " Looks unfazed, and takes no damage!\n";
     }
 }
 
 void Mage::RecoverMana()
 {
     if (bIsDead) return;
-    std::cout << "The Mage sits for a moment, and recovers 30 Mana!";
+    std::cout << Name << "Sits for a moment, and recovers 30 Mana!";
     Mana += 30;
     if (Mana > 100)
     {
@@ -77,7 +77,7 @@ void Mage::RecoverMana()
 
 void Mage::Die()
 {
-    std::cout << "The Mage has fainted!\n";
+    std::cout << Name << "Has fainted!\n";
     bIsDead = true;
 }
 

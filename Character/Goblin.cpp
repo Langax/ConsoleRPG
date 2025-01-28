@@ -14,9 +14,10 @@ Goblin::Goblin()
 void Goblin::Attack(Character& Target)
 {
     if (bIsDead) return;
-    
-    std::cout << "The " << Name << " counterattacks and stabs its dagger! dealing " << AttackPower << " damage to the " << Target.Name << "\n";
-    Target.TakeDamage(AttackPower);
+
+    int Damage = CalculateDamage();
+    std::cout << "The " << Name << " counterattacks and stabs its dagger! dealing " << Damage << " damage to " << Target.Name << "\n";
+    Target.TakeDamage(Damage);
 }
 
 void Goblin::TakeDamage(int Damage)
