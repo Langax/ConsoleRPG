@@ -1,7 +1,5 @@
 #include "BattleSystem.h"
-
 #include <iostream>
-
 #include "../Character/Character.h"
 
 
@@ -12,11 +10,14 @@ void BattleSystem::StartBattle(Character& Player, Character& Enemy)
     {
         if (bPlayerTurn)
         {
+            size_t ItemChoice;
+            size_t ItemCount = PlayerInventory.GetItemCount();
             if (Player.ClassID == 1)
             {
-                std::cout << "\nHow would you like to act?\n1. Attack\n2. Heal\n";
+                std::cout << "\nHow would you like to act?\n1. Attack\n2. Heal\n3. Use Item\n";
                 int choice;
                 std::cin >> choice;
+
 
                 switch(choice)
                 {
@@ -30,12 +31,23 @@ void BattleSystem::StartBattle(Character& Player, Character& Enemy)
                     bEnemyTurn = true;
                     bPlayerTurn = false;
                     break;
+                case 3:
+                    PlayerInventory.ListItems();
+                    std::cout << "Which item would you like to use? (1-" << ItemCount <<"): ";
+                    std::cin >> ItemChoice;
+
+                    if (ItemChoice >= 1 && ItemChoice <= ItemCount)
+                    {
+                        ItemBase* SelectedItem = PlayerInventory.GetItem(ItemChoice - 1);
+                        SelectedItem->Use(Player);
+                    }
+                    break;
                 default: ;
                 }
             }
             else if (Player.ClassID == 2)
             {
-                std::cout << "\nHow would you like to act?\n1. Attack\n2. Heal\n3. Recover Mana\n";
+                std::cout << "\nHow would you like to act?\n1. Attack\n2. Heal\n3. Recover Mana\n4. Use Item\n";
                 int choice;
                 std::cin >> choice;
 
@@ -56,21 +68,33 @@ void BattleSystem::StartBattle(Character& Player, Character& Enemy)
                     bEnemyTurn = true;
                     bPlayerTurn = false;
                     break;
+                case 4:
+                    PlayerInventory.ListItems();
+                    std::cout << "Which item would you like to use? (1-" << ItemCount <<"): ";
+                    std::cin >> ItemChoice;
+
+                    if (ItemChoice >= 1 && ItemChoice <= ItemCount)
+                    {
+                        ItemBase* SelectedItem = PlayerInventory.GetItem(ItemChoice - 1);
+                        SelectedItem->Use(Player);
+                    }
+                    break;
                 default: ;
                 }
             }
 
             if (Player.bIsDead)
             {
-                std::cout << "You failed your mission.. Try again when you are better prepared";
+                std::cout << "You failed your mission.. Try again when you are better prepared\n";
                 bInCombat = false;
                 bPlayerDied = true;
             }
 
             if (Enemy.bIsDead)
             {
-                std::cout << "Congratulations! You have proven your strength and won your battle!";
+                std::cout << "Congratulations! You have proven your strength and won your battle!\n";
                 bInCombat = false;
+                bEnemyDied = true;
             }
         }
 

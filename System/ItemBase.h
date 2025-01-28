@@ -1,29 +1,21 @@
 #pragma once
-#include "Inventory.h"
-#include "ItemBase.h"
+#include <string>
 
 class Character;
 
-class BattleSystem
+class ItemBase
 {
-public:
+private:
     //================================================================================================
     //=============================== PROPERTIES & VARIABLES =========================================
     //================================================================================================
-    bool bInCombat = true;
+    std::string Name;
     
-    // Always begin with the player turn (could be optimized to be random later)
-    bool bPlayerTurn = true;
-    bool bEnemyTurn = false;
-
-    bool bPlayerDied = false;
-    bool bEnemyDied = false;
-
-    Inventory<ItemBase>& PlayerInventory;
+public:
     //================================================================================================
     //====================================== FUNCTIONS ===============================================
     //================================================================================================
-    BattleSystem(Inventory<ItemBase>& Inventory) : PlayerInventory(Inventory) {}
-    void StartBattle(Character& Player, Character& Enemy);
+    virtual void Use(Character& Owner) = 0;
+    virtual std::string GetName() = 0;
+    
 };
-

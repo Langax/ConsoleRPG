@@ -1,14 +1,17 @@
 #include <iostream>
-
 #include "Character/Mage.h"
 #include "Character/Goblin.h"
 #include "Character/Warrior.h"
 #include "System/BattleSystem.h"
+#include "System/HealingPotion.h"
+#include "System/Inventory.h"
+#include "System/ItemBase.h"
 
 int main()
 {
     std::cout << "You open your eyes to a world filled with magic and monsters, before you lies a choice, will you choose the wisdom of magecraft, or the glory of strength? \n";
-    
+
+    Inventory<ItemBase> Inventory;
     Character* Player = nullptr;
     int choice;
     std::cout << "Choose your class:\n1. Warrior\n2. Mage\n";
@@ -35,7 +38,7 @@ int main()
     Player->Name = Name;
     
     Character* FirstGoblin = new Goblin();
-    BattleSystem* FirstBattle = new BattleSystem();
+    BattleSystem* FirstBattle = new BattleSystem(Inventory);
     
     FirstBattle->StartBattle(*Player, *FirstGoblin);
     if (FirstBattle->bPlayerDied)
@@ -44,14 +47,32 @@ int main()
         delete FirstBattle;
     }
 
-    if (!FirstBattle->bInCombat)
+    if (FirstBattle->bEnemyDied)
     {
         delete FirstGoblin;
         delete FirstBattle;
+        Inventory.AddItem(std::make_unique<HealingPotion>("Health Potion", 50));
     }
 
 
+    Character* SecondGoblin = new Goblin();
+    BattleSystem* SecondBattle = new BattleSystem(Inventory);
+
+    SecondBattle->StartBattle(*Player, *SecondGoblin);
+    if (SecondBattle->bPlayerDied)
+    {
+        delete Player;
+        delete SecondBattle;
+    }
+
+    if (SecondBattle->bEnemyDied)
+    {
+        delete SecondGoblin;
+        delete FirstBattle;
+        Inventory.AddItem(std::make_unique<HealingPotion>("Health Potion", 50));
+    }
+    
+
     delete Player;
-    delete FirstBattle;
     return 0;
 }

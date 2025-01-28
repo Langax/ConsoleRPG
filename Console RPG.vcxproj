@@ -159,6 +159,8 @@
     <ClCompile Include="Character\Warrior.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="System\BattleSystem.cpp" />
+    <ClCompile Include="System\HealingPotion.cpp" />
+    <ClCompile Include="System\Inventory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\Character.h" />
@@ -166,6 +168,9 @@
     <ClInclude Include="Character\Mage.h" />
     <ClInclude Include="Character\Warrior.h" />
     <ClInclude Include="System\BattleSystem.h" />
+    <ClInclude Include="System\HealingPotion.h" />
+    <ClInclude Include="System\Inventory.h" />
+    <ClInclude Include="System\ItemBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
