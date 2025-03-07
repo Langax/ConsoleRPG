@@ -1,11 +1,11 @@
-#include "HealingPotion.h"
+#include "ManaPotion.h"
 #include <iostream>
 #include <sstream>
 #include <chrono>
 #include <thread>
 #include "../Character/Character.h"
 
-void HealingPotion::TypeText(const std::string& text)
+void ManaPotion::TypeText(const std::string& text)
 {
     for (char c : text) //For each character within the "text" string
     {
@@ -14,11 +14,11 @@ void HealingPotion::TypeText(const std::string& text)
     }
 }
 
-void HealingPotion::Use(Character& Owner)
+void ManaPotion::Use(Character& Owner)
 {
     std::ostringstream UsageText;
-    UsageText << "You used a " << Name << "! Healed " << HealAmount << " Health!\n";
+    UsageText << "You used a " << Name << "! Restored " << ManaAmount << " Mana!\n";
     TypeText(UsageText.str());
-    Owner.Health += HealAmount;
+    Owner.Mana += ManaAmount;
 }
 

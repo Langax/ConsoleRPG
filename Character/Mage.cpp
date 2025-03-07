@@ -1,5 +1,6 @@
 #include "Mage.h"
 #include <iostream>
+#include <sstream>
 
 Mage::Mage()
 {
@@ -11,19 +12,21 @@ Mage::Mage()
     ClassID = 2;
 }
 
-void Mage::Attack(Character& Target)
+bool Mage::Attack(Character& Target)
 {
-    if (bIsDead) return;
+    if (bIsDead) return false;
     if (Mana < 15)
     {
-        std::cout << "You don't have enough mana!\n";
-        return;
+        TypeText("You don't have enough mana!\n");
+        return false;
     }
-
-    int Damage = CalculateDamage();
-    std::cout << "\n" << Name << " Hurls a mighty fireball through the air dealing " << Damage << " damage to the " << Target.Name << "\n";
+    std::ostringstream AttackText;
+    int Damage = CalculateDamage(0.9f, 2);
+    AttackText << "\n" << Name << " Hurls a mighty fireball through the air dealing " << Damage << " damage to the " << Target.Name << "\n";
+    TypeText(AttackText.str());
     Mana -= 15;
     Target.TakeDamage(Damage);
+    return true;
 }
 
 void Mage::Heal()
@@ -31,68 +34,19 @@ void Mage::Heal()
     if (bIsDead) return;
     if (Mana < 10)
     {
-        std::cout << "You don't have enough mana!\n";
+        TypeText("You don't have enough mana!\n");
         return;
     }
     
-    std::cout << Name << " Channels a water spell and heals 20 health!\n";
+    std::ostringstream HealText;
+    HealText << Name << " Channels a water spell and heals 20 health!\n";
+    TypeText(HealText.str());
+
+
     Health += 20;
     if (Health > 75)
     {
         Health = 75;
     }
     Mana -= 10;
-}
-
-void Mage::TakeDamage(int Damage)
-{
-    if (bIsDead) return;
-    
-    if (Damage > 0)
-    {
-        //std::cout << "The Mage flinches with pain, and takes " << Damage << " damage\n";
-        std::cout << "\n";
-        Health -= Damage;
-        if (Health <= 0)
-        {
-            Die();
-        }
-    }
-    else
-    {
-        std::cout << Name << " Looks unfazed, and takes no damage!\n";
-    }
-}
-
-void Mage::RecoverMana()
-{
-    if (bIsDead) return;
-    std::cout << Name << "Sits for a moment, and recovers 30 Mana!";
-    Mana += 30;
-    if (Mana > 100)
-    {
-        Mana = 100;
-    }
-}
-
-void Mage::Die()
-{
-    std::cout << Name << "Has fainted!\n";
-    bIsDead = true;
-}
-
-int Mage::CalculateDamage()
-{
-    std::srand(std::time(nullptr)); // Seed random number generator
-    int RandomNumber = std::rand() % 5 + 1; // Generates a number between 1 and 5
-
-    int CalculatedDamage = (MagicPower * 0.9) + RandomNumber;
-
-    return CalculatedDamage;
-}
-
-void Mage::Status()
-{
-    std::cout << "Remaining Health: " << Health << '\n';
-    std::cout << "Remaining Mana: " << Mana << '\n';
 }

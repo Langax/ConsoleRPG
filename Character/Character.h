@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 
 class Character
@@ -12,20 +13,34 @@ public:
     int AttackPower = 10;
     int MagicPower = 10;
     int Mana = 50;
+    int Gold = 0;
     std::string Name = "Unidentified";
     bool bIsDead = false;
-    virtual ~Character() {}
     int ClassID = 0;
 
-    
+
     //================================================================================================
     //====================================== FUNCTIONS ===============================================
     //================================================================================================
-    virtual void Attack(Character& target) = 0;
+    virtual bool Attack(Character& target) = 0;
     virtual void Heal() = 0;
-    virtual void TakeDamage(int damage) = 0;
-    virtual void Die() = 0;
-    virtual int CalculateDamage() = 0;
-    virtual void Status() = 0;
-    virtual void RecoverMana() = 0;
+    virtual void Status();
+    virtual void RecoverMana();
+    virtual void TakeDamage(int damage);
+
+
+protected:
+    //================================================================================================
+    //=============================== PROPERTIES & VARIABLES =========================================
+    //================================================================================================
+ 
+
+ 
+    //================================================================================================
+    //====================================== FUNCTIONS ===============================================
+    //================================================================================================
+    virtual void Die();
+    virtual int CalculateDamage(float multiplier, int damagetype);
+    void TypeText(const std::string& text);
+
 };

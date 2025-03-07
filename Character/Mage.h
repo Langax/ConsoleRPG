@@ -13,11 +13,6 @@ public:
     //====================================== FUNCTIONS ===============================================
     //================================================================================================
     Mage();
-    void Attack(Character& Target) override;
+    bool Attack(Character& Target) override;
     void Heal() override;
-    void TakeDamage(int Damage) override;
-    void Die() override;
-    void RecoverMana() override;
-    int CalculateDamage() override;
-    void Status() override;
 };

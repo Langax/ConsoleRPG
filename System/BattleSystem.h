@@ -10,20 +10,31 @@ public:
     //================================================================================================
     //=============================== PROPERTIES & VARIABLES =========================================
     //================================================================================================
+    bool bPlayerDied = false;
+    bool bEnemyDied = false;
+
+    //================================================================================================
+    //====================================== FUNCTIONS ===============================================
+    //================================================================================================
+    void StartBattle(Character& Player, Character& Enemy);
+    BattleSystem(Inventory<ItemBase>& Inventory) : PlayerInventory(Inventory) {}
+
+
+private:
+    //================================================================================================
+    //=============================== PROPERTIES & VARIABLES =========================================
+    //================================================================================================
     bool bInCombat = true;
-    
+
     // Always begin with the player turn (could be optimized to be random later)
     bool bPlayerTurn = true;
     bool bEnemyTurn = false;
-
-    bool bPlayerDied = false;
-    bool bEnemyDied = false;
 
     Inventory<ItemBase>& PlayerInventory;
     //================================================================================================
     //====================================== FUNCTIONS ===============================================
     //================================================================================================
-    BattleSystem(Inventory<ItemBase>& Inventory) : PlayerInventory(Inventory) {}
-    void StartBattle(Character& Player, Character& Enemy);
+    void TypeText(const std::string& text);
+
 };
 

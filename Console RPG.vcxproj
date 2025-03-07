@@ -154,13 +154,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Character\Character.cpp" />
     <ClCompile Include="Character\Goblin.cpp" />
     <ClCompile Include="Character\Mage.cpp" />
     <ClCompile Include="Character\Warrior.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="System\BattleSystem.cpp" />
+    <ClCompile Include="System\GeneralGoodsMerchant.cpp" />
     <ClCompile Include="System\HealingPotion.cpp" />
     <ClCompile Include="System\Inventory.cpp" />
+    <ClCompile Include="System\ManaPotion.cpp" />
+    <ClCompile Include="System\StrengthPotion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character\Character.h" />
@@ -168,9 +172,12 @@
     <ClInclude Include="Character\Mage.h" />
     <ClInclude Include="Character\Warrior.h" />
     <ClInclude Include="System\BattleSystem.h" />
+    <ClInclude Include="System\GeneralGoodsMerchant.h" />
     <ClInclude Include="System\HealingPotion.h" />
     <ClInclude Include="System\Inventory.h" />
     <ClInclude Include="System\ItemBase.h" />
+    <ClInclude Include="System\ManaPotion.h" />
+    <ClInclude Include="System\StrengthPotion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
